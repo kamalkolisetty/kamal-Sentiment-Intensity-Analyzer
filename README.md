@@ -28,6 +28,27 @@ This project is a web application for sentiment analysis using a pre-trained tra
 ![Starting](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(464).png)
 
 
+![](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(457).png)
+
+
+![](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(458).png)
+
+
+![](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(459).png)
+
+
+![](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(460).png)
+
+
+![](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(461).png)
+
+
+![](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(462).png)
+
+
+![](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(463).png)
+
+
 #### Future Enhancements:
 * Implement user authentication for personalized experiences.
 * Integrate additional sentiment analysis models for comparison.
