@@ -25,7 +25,7 @@ This project is a web application for sentiment analysis using a pre-trained tra
 4. Access the web app in your browser: `http://localhost:5000`
 
 ### Demonstration
-![Starting](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/[Screenshot (464).png](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(464).png)
+![Starting](https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/Screenshot%20(464).png)
 
 
 #### Future Enhancements:
