@@ -2,7 +2,7 @@
 
 > **An AI-Powered Emotion & Tone Intelligence Platform Built with Flask, Transformers, and PyTorch**
 
-![Project Banner](https://via.placeholder.com/1200x400?text=Sentiment+Intensity+Analyzer)
+![](screenshots/1.png)
 
 ---
 
