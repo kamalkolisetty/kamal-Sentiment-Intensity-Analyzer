@@ -3,88 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> Text Sentiment Analyzer</title>
-    <!-- Link to Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        /* Custom CSS for fonts */
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-        /* Custom CSS for highlighting */
-        #sentimentLabel {
-            font-weight: bold;
-            color: blue;
-        }
+    <meta name="description" content="Sentiment Intensity Analyzer - Advanced Emotion & Tone Detection">
+    <meta name="keywords" content="sentiment analysis, emotion detection, tone analyzer, sarcasm detection">
+    <meta name="author" content="Kamal Kumar Kolisetty">
+    
+    <title>Sentiment Intensity Analyzer</title>
 
-        #sentimentValue {
-            font-weight: bold;
-            color: red;
-        }
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' font-size='100' text-anchor='middle' dominant-baseline='central'%3E%F0%9F%AB%A3%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    
+    <style>
+        h1 { text-shadow: 0 0 20px rgba(255,255,255,0.6); }
+        #output-section { display: none; }
     </style>
 </head>
 <body>
+    <div class="moving-emojis" id="emojis"></div>
+
     <div class="container mt-5">
-        <h1 class="text-center">Text Sentiment Analyzer</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0">✨ Sentiment Intensity Analyzer ✨</h1>
+            <a href="/about" class="btn btn-about">About Us</a>
+        </div>
+        
         <form id="input-form">
             <div class="form-group">
                 <label for="input_text">Enter your text:</label>
                 <input type="text" class="form-control" id="input_text" name="input_text" required autocomplete="off">
-
             </div>
-            <button type="button" class="btn btn-primary" onclick="processInput()">Process</button>
+
+            <div class="form-group">
+                <label for="analysis_type">Choose Analysis:</label>
+                <select class="form-control" id="analysis_type" name="analysis_type">
+                    <option value="full">Full Analysis (Emotions + Tone)</option>
+                    <option value="emotions">Emotions Only</option>
+                    <option value="tone">Tone Analysis Only</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-light btn-lg btn-block" onclick="processInput()">
+                Analyze Now 🚀
+            </button>
         </form>
-        <h2 class="mt-4">Processed Output:</h2>
-        <div id="output" class="mt-2"></div>
+
+        <div id="output-section">
+            <h2 class="mt-5">Processed Output:</h2>
+            <div id="output" class="mt-3"></div>
+        </div>
     </div>
 
+    <footer class="text-center py-4 mt-5" style="opacity: 0.8; font-size: 0.95rem;">
+        © KWorks | Crafted with ✨✨ & Endless ☕
+    </footer>
+
     <script>
-       function processInput() {
-    var inputText = document.getElementById("input_text").value;
-    var outputDiv = document.getElementById("output");
+        const gradients = [
+            "linear-gradient(-45deg, #6a11cb, #2575fc)",
+            "linear-gradient(-45deg, #00c3ff, #1a1aff)",
+            "linear-gradient(-45deg, #00ff88, #0099ff)",
+            "linear-gradient(-45deg, #8e2de2, #4a00e0)",
+            "linear-gradient(-45deg, #2575fc, #6a11cb)"
+        ];
 
-    // Send an AJAX request to the server for processing
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            // Highlight the sentiment label and value
-            outputDiv.innerHTML = `
-                <p><span id="sentimentLabel">Sentiment:</span> <span id="sentimentValue">${response.sentiment}</span></p>
-                <button class="btn btn-info my-2 mx-2" onclick="showDetails()">Show Details</button>
-                <div id="details" style="display: none;">
-                    <p>roberta_neg: ${response.roberta_neg}</p>
-                    <p>roberta_neu: ${response.roberta_neu}</p>
-                    <p>roberta_pos: ${response.roberta_pos}</p>
-                </div>
-            `;
-            // Clear the input field
-          //  document.getElementById("input_text").value = "";
+        let currentGradientIndex = 0;
+
+        function setRandomGradient() {
+            currentGradientIndex = Math.floor(Math.random() * gradients.length);
+            document.body.style.background = gradients[currentGradientIndex];
+            document.body.style.backgroundSize = "400% 400%";
         }
-    };
 
-    xhr.open("POST", "/process", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("input_text=" + inputText);
-}
+        function changeGradientOnResult() {
+            let newIndex = (currentGradientIndex + Math.floor(Math.random() * 3) + 1) % gradients.length;
+            while (newIndex === currentGradientIndex) newIndex = (newIndex + 1) % gradients.length;
+            currentGradientIndex = newIndex;
+            document.body.style.background = gradients[currentGradientIndex];
+        }
 
-        function showDetails() {
-            var detailsDiv = document.getElementById("details");
-            var showDetailsButton = document.querySelector("#output button");
-
-            if (detailsDiv.style.display === "none") {
-                detailsDiv.style.display = "block";
-                showDetailsButton.textContent = "Hide Details";
-            } else {
-                detailsDiv.style.display = "none";
-                showDetailsButton.textContent = "Show Details";
+        function createEmojis() {
+            const emojisContainer = document.getElementById('emojis');
+            const emojiList = ['😊','😢','😡','😱','😍','😂','🥺','😠','🙌','💔','🔥','😌','😤','🥰','😭','😎','🙃','🤔','😏','💀','❤️','🌟','💯','🥹'];
+            
+            for (let i = 0; i < 35; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'emoji';
+                emoji.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.animationDuration = (Math.random() * 45 + 45) + 's';
+                emoji.style.animationDelay = '-' + Math.random() * 50 + 's';
+                emoji.style.opacity = Math.random() * 0.25 + 0.12;
+                emojisContainer.appendChild(emoji);
             }
         }
+
+        function processInput() {
+            var inputText = document.getElementById("input_text").value.trim();
+            var analysisType = document.getElementById("analysis_type").value;
+            var outputDiv = document.getElementById("output");
+            var outputSection = document.getElementById("output-section");
+
+            if (!inputText) {
+                outputDiv.innerHTML = `<p class="text-warning">Please enter some text.</p>`;
+                outputSection.style.display = "block";
+                return;
+            }
+
+            outputDiv.innerHTML = `<p>Analyzing with AI...</p>`;
+            outputSection.style.display = "block";
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        displayResults(response);
+                        changeGradientOnResult();
+                    } else {
+                        outputDiv.innerHTML = `<p class="text-danger">Error occurred. Please try again.</p>`;
+                    }
+                }
+            };
+
+            xhr.open("POST", "/process", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send(`input_text=${encodeURIComponent(inputText)}&analysis_type=${analysisType}`);
+        }
+
+        function displayResults(data) {
+            var outputDiv = document.getElementById("output");
+            let html = `<p><strong>Input:</strong> "${data.input}"</p>`;
+
+            if (data.emotions) {
+                html += `<div class="result-card"><h5>🎭 Emotions Detected</h5><ul>`;
+                data.emotions.top_emotions.forEach(em => {
+                    html += `<li><strong>${em.label}:</strong> ${(em.score * 100).toFixed(1)}%</li>`;
+                });
+                html += `</ul></div>`;
+            }
+
+            if (data.tone_analysis) {
+                html += `<div class="result-card"><h5>🔍 Tone Analysis</h5><ul>`;
+                data.tone_analysis.top_tones.forEach(tone => {
+                    html += `<li><strong>${tone.label}:</strong> ${(tone.score * 100).toFixed(1)}%</li>`;
+                });
+                html += `</ul></div>`;
+            }
+
+            outputDiv.innerHTML = html;
+        }
+
+        window.onload = function() {
+            setRandomGradient();
+            createEmojis();
+        };
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,53 +1,72 @@
-from transformers import AutoTokenizer
-from transformers import AutoModelForSequenceClassification
-from scipy.special import softmax
+from transformers import pipeline
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# Load the tokenizer and model outside of the process_input function
-MODEL = "cardiffnlp/twitter-roberta-base-sentiment"
-tokenizer = AutoTokenizer.from_pretrained(MODEL)
-model = AutoModelForSequenceClassification.from_pretrained(MODEL)
+print("Loading models...")
+
+# Emotions Model
+emotion_pipeline = pipeline("text-classification", 
+                           model="j-hartmann/emotion-english-distilroberta-base", 
+                           top_k=None)
+
+# Zero-Shot Tone Analysis
+zero_shot_classifier = pipeline("zero-shot-classification", 
+                               model="facebook/bart-large-mnli")
+
+print("✅ Models loaded successfully!")
+
+def get_emotions(text):
+    results = emotion_pipeline(text)[0]
+    sorted_emotions = sorted(results, key=lambda x: x['score'], reverse=True)
+    return {"top_emotions": sorted_emotions[:8]}
+
+def get_zero_shot_tone(text):
+    candidate_labels = [
+        "threatening", "angry", "rude", "sarcastic", "polite", 
+        "professional", "casual", "sad", "disappointed", "excited",
+        "formal", "informal", "encouraging", "neutral", "happy"
+    ]
+    
+    result = zero_shot_classifier(text, candidate_labels, multi_label=False)
+    
+    return {
+        "top_tones": [
+            {"label": result['labels'][i], "score": float(result['scores'][i])} 
+            for i in range(7)
+        ]
+    }
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/process', methods=['POST'])
-@app.route('/process', methods=['POST'])
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
+@app.route('/process', methods=['POST'])
 def process():
-    if request.method == 'POST':
-        input_text = request.form['input_text']
-        processed_output = process_input(input_text)
-        return jsonify(processed_output) 
+    try:
+        input_text = request.form['input_text'].strip()
+        analysis_type = request.form.get('analysis_type', 'full')
 
-def process_input(example):
-    encoded_text = tokenizer(example, return_tensors='pt')
-    output = model(**encoded_text)
-    scores = output[0][0].detach().numpy()
-    scores = softmax(scores)
-    scores_dict = {
-        'roberta_neg': float(scores[0]),
-        'roberta_neu': float(scores[1]),
-        'roberta_pos': float(scores[2])
-    }
+        if not input_text:
+            return jsonify({"error": "Empty input"}), 400
 
-    # Determine sentiment based on the highest score
-    if scores_dict['roberta_neg'] > scores_dict['roberta_neu'] and scores_dict['roberta_neg'] > scores_dict['roberta_pos']:
-        sentiment = " NEGATIVE.\n Stay strong, my friend. You've got this! \U0001F4AA"
+        result = {"input": input_text}
 
-    elif scores_dict['roberta_pos'] > scores_dict['roberta_neu'] and scores_dict['roberta_pos'] > scores_dict['roberta_neg']:
-        sentiment = " POSITIVE.\n Your positivity is contagious, and it brightens my day too! \U0001F604\U0001F31E"
+        if analysis_type in ['emotions', 'full']:
+            result["emotions"] = get_emotions(input_text)
+        
+        if analysis_type in ['tone', 'full']:
+            result["tone_analysis"] = get_zero_shot_tone(input_text)
 
-    else:
-        sentiment = " NEUTRAL.\n Happy day, mate! \U0001F31E\U0001F604"
+        return jsonify(result)
 
-    scores_dict['sentiment'] = sentiment
-    return scores_dict
-
-
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)

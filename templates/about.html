@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="About Sentiment Intensity Analyzer - Our Full Journey">
+    <title>About Us | Sentiment Intensity Analyzer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="moving-emojis" id="emojis"></div>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">✨ About Us ✨</h1>
+        <h4 class="text-center mb-5">🚀 From a Basic Sentiment Tool to an Intelligent Tone & Emotion Analyzer</h4>
+
+        <h5 class="mt-4">🎯 What is Sentiment Intensity Analyzer?</h5>
+        <p>This is an advanced AI-powered web application designed to understand not just whether text is positive or
+            negative, but to deeply analyze the <strong>emotional intensity</strong> 😢😡 and <strong>underlying
+                tone</strong> 😏 of any written text. Whether it's casual GenZ chat, customer feedback, professional
+            emails, or angry complaints — this tool helps users truly understand the emotion and intent behind the
+            words.</p>
+
+        <h5 class="mt-5">📖 Our Complete Journey</h5>
+        <p>We started this project with a very basic Flask web app using the
+            <code>cardiffnlp/twitter-roberta-base-sentiment</code> model. It could only detect Positive, Neutral, or
+            Negative sentiment with some hardcoded motivational messages. However, we quickly realized it was quite
+            limited and often inaccurate on real-world text — especially sarcasm, mixed emotions, commands, grief, and
+            passive-aggressive messages.</p>
+
+        <p>So we began a long journey of experimentation. We tried multiple models, tested them rigorously with
+            difficult examples, removed the ones that were not performing well, and finally kept only the strongest two
+            models. This iterative process helped us build a much more reliable and useful tool.</p>
+
+        <h5 class="mt-5">🧠 Our Final Powerful Models</h5>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="result-card">
+                    <strong>🎭 1. Emotion Detection Model</strong><br><br>
+                    <strong>Model:</strong> <code>j-hartmann/emotion-english-distilroberta-base</code><br>
+                    <strong>Developed by:</strong> Jan Hartmann<br>
+                    <strong>Architecture:</strong> DistilRoBERTa (lighter & faster version of RoBERTa)<br>
+                    <strong>Training Data:</strong> Combination of 6 diverse English emotion datasets (~20,000 balanced
+                    examples)<br>
+                    <strong>Detects Emotions like :</strong> Anger 😡, Joy 😊, Sadness 😢, Fear 😱, Surprise 😲, Disgust
+                    🤢, Neutral 😐
+                    <br><br>
+                    <p>We show you the <strong>Top 7 emotions</strong> with percentage scores so you can clearly see the
+                        emotional intensity of any text.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="result-card">
+                    <strong>🔍 2. Zero-Shot Tone Analysis</strong><br><br>
+                    <strong>Model:</strong> <code>facebook/bart-large-mnli</code><br>
+                    <strong>Developed by:</strong> Facebook AI (Meta)<br>
+                    <strong>Architecture:</strong> BART-Large<br>
+                    <strong>Training Data:</strong> MultiNLI (MNLI) dataset — ~433,000 sentence pairs for Natural
+                    Language Inference<br>
+                    <strong>Can Understand Many Tones:</strong> Sarcastic 😏, Threatening 💀, Angry 😠, Polite 🙏,
+                    Rude 😤, Disappointed 😞, Encouraging 🌟, Professional 💼, Casual 😂, and more...
+                    <br><br>
+                    <p>We show you the <strong>Top 7 tones</strong> with confidence scores. This model is especially
+                        powerful at catching sarcasm and hidden intent!</p>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="mt-5">🔄 Evolution of the Project</h5>
+        <ul>
+            <li>Started with basic 3-label sentiment analysis</li>
+            <li>Added multiple models (Sentiment + Stars + Formality + Emotions)</li>
+            <li>Conducted extensive testing on real challenging inputs (sarcasm, grief, commands, mixed emotions)</li>
+            <li>Removed weak performing models after careful evaluation</li>
+            <li>Focused only on the two best models for accuracy and speed</li>
+            <li>Built a modern, beautiful, and engaging user interface with animated gradients and floating emojis</li>
+        </ul>
+
+        <h5 class="mt-5">✨ Key Features</h5>
+        <ul>
+            <li>Real-time analysis using state-of-the-art Hugging Face Transformers</li>
+            <li>Flexible analysis modes (Full, Emotions Only, Tone Only)</li>
+            <li>Dynamic & eye-catching UI with floating emojis and changing gradients</li>
+            <li>Strong performance on sarcasm, mixed feelings, and complex text</li>
+            <li>Mobile-friendly and visually appealing design</li>
+        </ul>
+
+        <div class="text-center mt-5">
+            <a href="/" class="btn btn-light btn-lg">Try the Analyzer Now 🚀</a>
+        </div>
+
+        <footer class="text-center py-4 mt-5" style="opacity: 0.8;">
+            © KWorks | Crafted with ✨✨ & Endless ☕
+        </footer>
+    </div>
+
+    <script>
+        const gradients = [
+            "linear-gradient(-45deg, #6a11cb, #2575fc)",
+            "linear-gradient(-45deg, #00c3ff, #1a1aff)",
+            "linear-gradient(-45deg, #00ff88, #0099ff)",
+            "linear-gradient(-45deg, #8e2de2, #4a00e0)"
+        ];
+
+        function setRandomGradient() {
+            document.body.style.background = gradients[Math.floor(Math.random() * gradients.length)];
+            document.body.style.backgroundSize = "400% 400%";
+        }
+
+        function createEmojis() {
+            const container = document.getElementById('emojis');
+            const list = ['😊', '😢', '😡', '😱', '😍', '😂', '🥺', '😠', '🙌', '💔', '🔥', '😌', '🥰', '😭', '😎', '🙃', '🤔', '😏'];
+            for (let i = 0; i < 35; i++) {
+                const em = document.createElement('div');
+                em.className = 'emoji';
+                em.textContent = list[Math.floor(Math.random() * list.length)];
+                em.style.left = Math.random() * 100 + 'vw';
+                em.style.animationDuration = (Math.random() * 45 + 45) + 's';
+                em.style.animationDelay = '-' + Math.random() * 50 + 's';
+                container.appendChild(em);
+            }
+        }
+
+        window.onload = function () {
+            setRandomGradient();
+            createEmojis();
+        };
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
