@@ -566,28 +566,8 @@ Planned improvements include:
 * Custom Themes
 
 ---
-
-# 👨‍💻 Author
-
-## Kamal Kumar Kolisetty
-
-Software Engineer | AI Engineer | Full Stack Developer
-
-### Connect With Me
-
-**LinkedIn**
-
-https://linkedin.com/in/kamal-kumar-kolisetty
-
-**GitHub**
-
-https://github.com/yourusername
-
-**Email**
-
-[kamalkumarkolisetty@gmail.com](mailto:kamalkumarkolisetty@gmail.com)
-
----
+ 
+ 
 
 # ⭐ Support
 
@@ -622,5 +602,39 @@ Special thanks to:
 for providing the tools and frameworks that made this project possible.
 
 ---
+ 
 
-**Built with ❤️, ☕, curiosity, and countless experiments in NLP and Generative AI.**
+ 
+
+# 💭 Final Thoughts
+
+Language is one of humanity's most powerful inventions.
+
+Yet understanding language isn't just about understanding words.
+
+It's about understanding:
+
+* Emotions
+* Intentions
+* Context
+* Nuance
+* Tone
+* Human Experience
+
+The future of Artificial Intelligence isn't simply teaching machines to read text.
+
+It's teaching them to understand the people behind that text.
+
+This project is a small step toward that future.
+
+One sentence at a time.
+
+---
+ 
+
+**Crafted with ❤️ to help machines understand not just words, but the emotions behind them.**
+
+### © KWorks | Crafted with ✨, AI & Endless ☕
+
+---
+
