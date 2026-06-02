@@ -421,24 +421,59 @@ Sentiment-Intensity-Analyzer/
 # 📸 Demonstration
  
 ### 1. Homepage 
- ![Homepage](screenshots/1-homepage.png)
+
+![](screenshots/1.png)
+
+
 
 ### 2. Analysis Options
-![Options](screenshots/2-options.png)
+
+![](screenshots/2.png)
+
+
 
 ### 3. "Analyzing with AI..." Screen
 
+![](screenshots/3.png)
+
+
+
 ### 4. Full Analysis Output Example
+
+![](screenshots/4.png)
+
 
 ### 5. Emotions Only Output (Anger Example)
 
+![](screenshots/5.png)
+
+
 ### 6. Mobile View - Responsiveness
+
+![](screenshots/6.png)
+
 
 ### 7. Tone Only Analysis (Sarcastic Example)
 
+
+![](screenshots/77.png)
+
+
 ### 8-9. About Us Page (Desktop + Mobile)
 
+![](screenshots/8.png)
+
+
+![](screenshots/9.png)
+
+
+
 ### 10. Project Structure in VS Code
+
+
+![](screenshots/10.png)
+
+
 
 ---
 
@@ -455,7 +490,7 @@ Sentiment-Intensity-Analyzer/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/Sentiment-Intensity-Analyzer.git
+git clone https://github.com/kamalkolisetty/Sentiment-Intensity-Analyzer.git
 
 cd Sentiment-Intensity-Analyzer
 ```
@@ -632,9 +667,9 @@ One sentence at a time.
 ---
  
 
-**Crafted with ❤️ to help machines understand not just words, but the emotions behind them.**
+### Crafted with ❤️ to help machines understand not just words, but the emotions behind them.**
 
-### © KWorks | Crafted with ✨, AI & Endless ☕
+## © KWorks | Crafted with ✨, AI & Endless ☕
 
 ---
 
