@@ -1,6 +1,6 @@
 <!-- PORTFOLIO DATA
 title: Sentiment Intensity Analyzer
-description: An AI-powered NLP platform that goes beyond basic sentiment analysis to detect emotions, communication tone, sarcasm, threats, professionalism, and intent using state-of-the-art Transformer models. Built with Flask, PyTorch, and Hugging Face Transformers, featuring confidence-based predictions, interactive visualizations, and a modern responsive UI.
+description:  AI-powered NLP platform that analyzes emotions, tone, sarcasm, and intent using Transformer models. Built with Flask, PyTorch, and Hugging Face, featuring confidence-based predictions and an interactive responsive UI.
 skills: Python, Flask, PyTorch, Hugging Face Transformers, NLP, Bootstrap, JavaScript, HTML, CSS
 image: https://github.com/kamalkolisetty/kamal-Sentiment-Intensity-Analyzer/blob/main/screenshots/77.png?raw=true
 -->
